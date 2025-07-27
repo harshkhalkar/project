@@ -29,6 +29,6 @@ This CloudFormation template provisions a **Virtual Private Cloud (VPC)** with m
 
 ```bash
 .
-├── My-VPC.yml       # CloudFormation template
+├── My-VPC.yml              # CloudFormation template
 └── README.md               # Project documentation (this file)
 
