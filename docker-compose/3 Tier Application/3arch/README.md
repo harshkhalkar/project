@@ -47,5 +47,3 @@ The application allows users to submit a form which is stored in a MySQL databas
 - Serves the HTML files and proxies `.php` requests to PHP-FPM.
 - Configured via `default.conf`.
 
----
-
