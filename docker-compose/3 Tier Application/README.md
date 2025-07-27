@@ -10,7 +10,7 @@ The application allows users to submit a form which is stored in a MySQL databas
 ---
 
 ## 📁 Project Structure
-
+```bash
 /3arch/
 ├── app
 │ └── code
