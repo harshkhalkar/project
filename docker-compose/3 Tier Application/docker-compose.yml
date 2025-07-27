@@ -1,0 +1,36 @@
+services:
+  db:
+    build: /3arch/db/
+    container_name: db
+    volumes:
+      - myvolume:/var/lib/mysql/
+    networks:
+      - dbnet
+  app:
+    image: bitnami/php-fpm
+    container_name: app
+    volumes:
+      - /3arch/app/code/:/app/
+    networks:
+      - dbnet
+      - webnet
+    depends_on:
+      - db
+  web:
+    image: nginx
+    ports:
+      - "80:80"
+    container_name: web
+    volumes:
+      - /3arch/web/code/:/usr/share/nginx/html/
+      - /3arch/web/config/:/etc/nginx/conf.d/
+    networks:
+      - webnet
+    depends_on:
+      - db
+      - app
+networks:
+  webnet: {}
+  dbnet: {}
+volumes:
+  myvolume: {}

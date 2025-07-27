@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS Glass Architecture</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --base: #000000;
+            --glass: rgba(255, 255, 255, 0.1);
+            --border: rgba(255, 255, 255, 0.15);
+            --highlight: rgba(255, 255, 255, 0.05);
+            --text: rgba(255, 255, 255, 0.8);
+            --accent: #2997FF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--base);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .nav-container {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            background: rgba(0, 0, 0, 0.5);
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav {
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-weight: 500;
+            font-size: 1.4rem;
+            color: var(--text);
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            margin: 0 2rem;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+            border-radius: 12px;
+        }
+
+        .nav-links a:hover {
+            background: var(--glass);
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s ease forwards;
+        }
+
+        .architecture {
+            padding: 8rem 5%;
+        }
+
+        .tier-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tier-card {
+            background: var(--glass);
+            border-radius: 20px;
+            padding: 2.5rem;
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tier-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                var(--highlight),
+                transparent
+            );
+            transition: left 0.8s ease;
+        }
+
+        .tier-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .tier-card:hover::before {
+            left: 100%;
+        }
+
+        .tier-card i {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            transition: all 0.4s ease;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .tier-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas class="particles"></canvas>
+
+    <!-- Navigation -->
+    <div class="nav-container">
+        <nav>
+            <div class="logo">PROJECT 02</div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#architecture">Layers</a>
+                <a href="form.html">Form</a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>3 Tier Architecture<br>AWS</h1>
+            <p>Normal Web To Deploy In Architecture.</p>
+        </div>
+    </section>
+
+    <!-- 3-Tier Architecture Section -->
+    <section id="architecture" class="architecture">
+        <div class="tier-container">
+            <div class="tier-card">
+                <i class="fas fa-globe"></i>
+                <h3>Presentation Layer</h3>
+                <p>CloudFront • S3 • Route 53</p>
+                <div class="divider"></div>
+                <p>The Presentation Layer is the topmost layer in a 3-tier architecture. It handles the user interface (UI) and ensures seamless interaction between users and the application.</p>
+            </div>
+
+            <div class="tier-card">
+                <i class="fas fa-cogs"></i>
+                <h3>Application Layer</h3>
+                <p>EC2 • Lambda • Elastic Beanstalk</p>
+                <div class="divider"></div>
+                <p>The Application Layer is the middle layer of a 3-tier architecture in AWS. It handles the business logic, API processing, authentication, and request handling between the Presentation and Data Layers.</p>
+            </div>
+
+            <div class="tier-card">
+                <i class="fas fa-database"></i>
+                <h3>Data Layer</h3>
+                <p>RDS • DynamoDB • Redshift</p>
+                <div class="divider"></div>
+                <p>Managed database services with AI-powered optimization. The Data Layer is the bottom tier in a 3-tier architecture, responsible for storing, managing, and retrieving application data securely and efficiently.</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function initParticles() {
+            const canvas = document.querySelector('.particles');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const particles = [];
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 2 + 1;
+                    this.speedX = Math.random() * 3 - 1.5;
+                    this.speedY = Math.random() * 3 - 1.5;
+                }
+
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+
+                    if (this.x > canvas.width) this.x = 0;
+                    if (this.x < 0) this.x = canvas.width;
+                    if (this.y > canvas.height) this.y = 0;
+                    if (this.y < 0) this.y = canvas.height;
+                }
+
+                draw() {
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            function init() {
+                for (let i = 0; i < 100; i++) {
+                    particles.push(new Particle());
+                }
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(particle => {
+                    particle.update();
+                    particle.draw();
+                });
+                requestAnimationFrame(animate);
+            }
+
+            init();
+            animate();
+        }
+        initParticles();
+
+        const cards = document.querySelectorAll('.tier-card');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        cards.forEach(card => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateY(30px)';
+            observer.observe(card);
+        });
+
+    </script>
+</body>
+</html>
