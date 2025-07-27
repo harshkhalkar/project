@@ -27,7 +27,7 @@ The application allows users to submit a form which is stored in a MySQL databas
 │ └── default.conf # Custom Nginx configuration
 ├── docker-compose.yml # Orchestrates all services
 └── README.md # Project documentation (this file)
-
+```
 ---
 
 ## ⚙️ How It Works
