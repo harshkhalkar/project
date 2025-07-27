@@ -1,0 +1,171 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'AWS CloudFormation template to create a VPC with public and private subnets'
+
+Resources:
+
+  MyVPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/16
+      EnableDnsHostnames: true
+      EnableDnsSupport: true
+      InstanceTenancy: default
+      Tags:
+        - Key: Name
+          Value: My-VPC
+
+  PublicSubnet1a:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref MyVPC
+      AvailabilityZone: !Select [0, !GetAZs '']
+      CidrBlock: 10.0.0.0/20
+      MapPublicIpOnLaunch: true
+      Tags:
+        - Key: Name
+          Value: Public-Subnet-1a
+
+  PublicSubnet1b:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref MyVPC
+      AvailabilityZone: !Select [1, !GetAZs '']
+      CidrBlock: 10.0.16.0/20
+      MapPublicIpOnLaunch: true
+      Tags:
+        - Key: Name
+          Value: Public-Subnet-1b
+
+  PrivateSubnet011a:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref MyVPC
+      AvailabilityZone: !Select [0, !GetAZs '']
+      CidrBlock: 10.0.32.0/20
+      MapPublicIpOnLaunch: false
+      Tags:
+        - Key: Name
+          Value: Private-Subnet-01-1a
+
+  PrivateSubnet021b:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref MyVPC
+      AvailabilityZone: !Select [1, !GetAZs '']
+      CidrBlock: 10.0.48.0/20
+      MapPublicIpOnLaunch: false
+      Tags:
+        - Key: Name
+          Value: Private-Subnet-02-1b
+
+  PrivateSubnet031a:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref MyVPC
+      AvailabilityZone: !Select [0, !GetAZs '']
+      CidrBlock: 10.0.64.0/20
+      MapPublicIpOnLaunch: false
+      Tags:
+        - Key: Name
+          Value: Private-Subnet-03-1a
+
+  PrivateSubnet041b:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref MyVPC
+      AvailabilityZone: !Select [1, !GetAZs '']
+      CidrBlock: 10.0.80.0/20
+      MapPublicIpOnLaunch: false
+      Tags:
+        - Key: Name
+          Value: Private-Subnet-04-1b
+
+  PrivateSubnet051a:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref MyVPC
+      AvailabilityZone: !Select [0, !GetAZs '']
+      CidrBlock: 10.0.96.0/20
+      MapPublicIpOnLaunch: false
+      Tags:
+        - Key: Name
+          Value: Private-Subnet-05-1a
+
+  PrivateSubnet061b:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref MyVPC
+      AvailabilityZone: !Select [1, !GetAZs '']
+      CidrBlock: 10.0.112.0/20
+      MapPublicIpOnLaunch: false
+      Tags:
+        - Key: Name
+          Value: Private-Subnet-06-1b
+
+  InternetGateway:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: Name
+          Value: my-igw-my-vpc
+
+  InternetGatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref MyVPC
+      InternetGatewayId: !Ref InternetGateway
+
+  PublicRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref MyVPC
+      Tags:
+        - Key: Name
+          Value: My-VPC-RouteTable-Public
+
+  PublicRoute:
+    Type: AWS::EC2::Route
+    DependsOn: InternetGatewayAttachment
+    Properties:
+      RouteTableId: !Ref PublicRouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref InternetGateway
+
+  PublicSubnet1aRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref PublicSubnet1a
+      RouteTableId: !Ref PublicRouteTable
+
+  PublicSubnet1bRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref PublicSubnet1b
+      RouteTableId: !Ref PublicRouteTable
+
+Outputs:
+
+  VPC:
+    Description: A reference to the created VPC
+    Value: !Ref MyVPC
+    Export:
+      Name: !Sub "${AWS::StackName}-VPCID"
+
+  PublicSubnets:
+    Description: A list of the public subnets
+    Value: !Join [ ",", [ !Ref PublicSubnet1a, !Ref PublicSubnet1b ]]
+    Export:
+      Name: !Sub "${AWS::StackName}-PUB-NETS"
+
+  PrivateSubnets:
+    Description: A list of the private subnets
+    Value: !Join [ ",", [ !Ref PrivateSubnet011a, !Ref PrivateSubnet021b, !Ref PrivateSubnet031a, !Ref PrivateSubnet041b, !Ref PrivateSubnet051a, !Ref PrivateSubnet061b ]]
+    Export:
+      Name: !Sub "${AWS::StackName}-PRIV-NETS"
+
+  PublicRouteTable:
+    Description: A reference to the public route table
+    Value: !Ref PublicRouteTable
+    Export:
+      Name: !Sub "${AWS::StackName}-PUB-RT"
