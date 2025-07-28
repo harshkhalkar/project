@@ -10,12 +10,12 @@ This is a simple Flask application running inside Docker, connected to a MySQL d
 .
 ├── README.md
 └── flask-sql
-├── app
-│ ├── Dockerfile
-│ ├── app.py
-│ └── requirements.txt
-├── docker-compose.yml
-└── init.sql
+    ├── app
+    │ ├── Dockerfile
+    │ ├── app.py
+    │ └── requirements.txt
+    ├── docker-compose.yml
+    └── init.sql
 ```
 
 ---
