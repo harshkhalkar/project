@@ -1,0 +1,29 @@
+services:
+  flask-app:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    container_name: flask-app
+    depends_on:
+        - db-sql
+    networks:
+      - appnet
+    ports:
+      - "5000:5000"
+  db-sql:
+    image: mysql
+    ports:
+      - "3306"
+    container_name: db-sql
+    environment:
+      - MYSQL_ROOT_PASSWORD=123
+      - MYSQL_DATABASE=myapp
+    networks:
+      - appnet
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - volume1sql:/var/lib/mysql
+networks:
+  appnet: {}
+volumes:
+  volume1sql: {}
