@@ -41,32 +41,29 @@ This is a simple Flask application running inside Docker, connected to a MySQL d
 3. Output of Application
 
    ```bash
-{
-  "message": "Hello from Flask + MySQL!"
-}
+   {
+     "message": "Hello from Flask + MySQL!"
+   }
    ```
-🐳 Docker Components
-Flask App (flask-app):
-Runs a Flask server on port 5000.
+## 🐳 Docker Components
 
-Connects to MySQL using mysql-connector-python.
+### Flask App (`flask-app`)
+- Runs a Flask server on port `5000`.
+- Connects to MySQL using `mysql-connector-python`.
+- Code lives in `app/app.py`.
 
-Code lives in app/app.py.
+### MySQL Database (`db-sql`)
+- Based on the official `mysql` image.
+- Initializes with `init.sql` on first run.
+- Data persists using a named volume `volume1sql`.
 
-MySQL Database (db-sql):
-Based on the official mysql image.
+---
 
-Initializes with init.sql on first run.
+## 🛠️ Files Overview
 
-Data persists using a named volume volume1sql.
+- `app/app.py`: Main Flask application.
+- `app/requirements.txt`: Python dependencies.
+- `app/Dockerfile`: Builds the Flask app image.
+- `docker-compose.yml`: Orchestrates both containers.
+- `init.sql`: Initializes the `myapp` database and inserts one greeting row.
 
-🛠️ Files Overview
-app/app.py: Main Flask application.
-
-app/requirements.txt: Python dependencies.
-
-app/Dockerfile: Builds the Flask app image.
-
-docker-compose.yml: Orchestrates both containers.
-
-init.sql: Initializes the myapp database and inserts one greeting row.
