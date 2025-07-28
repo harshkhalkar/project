@@ -11,21 +11,23 @@ The application allows users to submit a form which is stored in a MySQL databas
 
 ## 📁 Project Structure
 ```bash
-/3arch/
-├── app
-│ └── code              ############################################################
-│ ├── submit.php        # PHP script to handle form submissions and insert into DB #
-│ └── test.php          # Optional test PHP script                                 #
-├── db                  
-│ ├── Dockerfile        # Builds a MySQL image with preloaded schema               #
-│ └── init.sql          # SQL script to initialize the 'info' DB and 'users' table #
-├── web
-│ ├── code
-│ │ ├── form.html       # Simple HTML form to collect user input                   #
-│ │ └── index.html      # Landing page                                             #
-│ └── config
-│ └── default.conf      # Custom Nginx configuration                               #
-└── docker-compose.yml  # Orchestrates all services                                #
+.
+├── 3arch
+|   ├── app
+|   │ └── code              ############################################################
+|   │ ├── submit.php        # PHP script to handle form submissions and insert into DB #
+|   │ └── test.php          # Optional test PHP script                                 #
+|   ├── db                  
+|   │ ├── Dockerfile        # Builds a MySQL image with preloaded schema               #
+|   │ └── init.sql          # SQL script to initialize the 'info' DB and 'users' table #
+|   ├── web
+|   │ ├── code
+|   │ │ ├── form.html       # Simple HTML form to collect user input                   #
+|   │ │ └── index.html      # Landing page                                             #
+|   │ └── config
+|   │ └── default.conf      # Custom Nginx configuration                               #
+|   └── docker-compose.yml  # Orchestrates all services                                #
+└── README.md               # Project documentation (this file)                        #
 ```
 ---
 
