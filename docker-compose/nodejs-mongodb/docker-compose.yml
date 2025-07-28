@@ -1,0 +1,28 @@
+services:
+  mongo-db:
+    image: mongo
+    ports:
+      - "27017:27017"
+    container_name: mongo-db
+    environment:
+      - MONGO_INITDB_ROOT_PASSWORD=123
+      - MONGO_INITDB_ROOT_USERNAME=root
+    networks:
+      - node-mongo
+    volumes:
+      - mongodb:/data/db
+  node-js:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    container_name: node-js
+    ports:
+      - "80:3000"
+    networks:
+      - node-mongo
+    depends_on:
+      - mongo-db
+volumes:
+  mongodb: {}
+networks:
+  node-mongo: {}
