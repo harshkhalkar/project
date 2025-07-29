@@ -73,3 +73,13 @@ Configure the following Lambda environment variables:
 ## 🖼️ Screenshots
 
 ![](screenshots/1.jpg)
+![](screenshots/1751805390290.jpg)
+![](screenshots/1751805390309.jpg)
+![](screenshots/1751805390270.jpg)
+![](screenshots/1751805390276.jpg)
+![](screenshots/1751805390293.jpg)
+![](screenshots/1751805390295.jpg)
+![](screenshots/1751805390286.jpg)
+![](screenshots/1751805390327.jpg)
+![](screenshots/1751805390263.jpg)
+![](screenshots/1751805390287.jpg)
