@@ -72,3 +72,4 @@ Configure the following Lambda environment variables:
 
 ## 🖼️ Screenshots
 
+![](screenshots/1.jpg)
