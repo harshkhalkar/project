@@ -10,10 +10,7 @@ This project uses **AWS Textract**, **DynamoDB**, **SES**, and **S3** to automat
 
 ## 📐 Architecture Overview
 
-> 📌 Add your architecture diagram below  
-> You can use tools like Lucidchart, draw.io, or AWS Architecture Icons
-
-![Architecture Diagram](screenshots/architecture-diagram.png)
+![Architecture Diagram](./screenshots/architecture-diagram.png)
 
 ---
 
