@@ -10,7 +10,7 @@ This project uses **AWS Textract**, **DynamoDB**, **SES**, and **S3** to automat
 
 ## 📐 Architecture Overview
 
-![Architecture Diagram](screenshots/Automated Receipt Processor diagram.jpeg)
+![Architecture Diagram](screenshots/Automated%20Receipt%20Processor%20diagram.jpeg)
 
 ---
 
