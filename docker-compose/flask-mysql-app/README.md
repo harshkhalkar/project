@@ -4,7 +4,7 @@ This is a simple Flask application running inside Docker, connected to a MySQL d
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```bash
 .
@@ -20,7 +20,7 @@ This is a simple Flask application running inside Docker, connected to a MySQL d
 
 ---
 
-## 🚀 How to Run
+## How to Run
 
 ### Prerequisites:
 - [Docker](https://www.docker.com/)
@@ -45,7 +45,9 @@ This is a simple Flask application running inside Docker, connected to a MySQL d
      "message": "Hello from Flask + MySQL!"
    }
    ```
-## 🐳 Docker Components
+---
+
+## Docker Components
 
 ### Flask App (`flask-app`)
 - Runs a Flask server on port `5000`.
@@ -59,7 +61,7 @@ This is a simple Flask application running inside Docker, connected to a MySQL d
 
 ---
 
-## 🛠️ Files Overview
+## Files Overview
 
 - `app/app.py`: Main Flask application.
 - `app/requirements.txt`: Python dependencies.

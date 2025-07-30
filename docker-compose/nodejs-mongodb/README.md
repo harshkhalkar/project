@@ -6,7 +6,7 @@ When you access the root route `/`, it creates a new user named `"harsh"` in the
 
 ---
 
-## 🗂️ Project Structure
+## Project Structure
 
 ```bash
 nodejs-mongodb/
@@ -20,7 +20,7 @@ nodejs-mongodb/
 
 ---
 
-## 🚀 How to Run
+## How to Run
 
 ### 1. Prerequisites
 
@@ -34,15 +34,15 @@ docker-compose up -d
 ```
 This will:
 
-- 🐳 Start a MongoDB container named mongo-db
+- Start a MongoDB container named mongo-db
 
-- 🛠️ Build and start a Node.js app container named node-js
+- Build and start a Node.js app container named node-js
 
-- 🌐 Create a Docker network (node-mongo) to allow communication between containers
+- Create a Docker network (node-mongo) to allow communication between containers
 
-- 💾 Create a persistent volume (mongodb) to store MongoDB data even after container restarts
+- Create a persistent volume (mongodb) to store MongoDB data even after container restarts
 
-🌐 Access the App
+Access the App
 Expected response:
 ```bash
 {
@@ -54,7 +54,7 @@ Expected response:
   }
 }
 ```
-📦 Included Technologies
+Included Technologies
 - Node.js with Express
 
 - MongoDB with Mongoose

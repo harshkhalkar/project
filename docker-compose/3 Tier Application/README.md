@@ -1,4 +1,4 @@
-# 🐳 3-Tier Web Application using Docker Compose (PHP, MySQL, Nginx)
+# 3-Tier Web Application using Docker Compose (PHP, MySQL, Nginx)
 
 This project sets up a simple 3-tier architecture using Docker Compose:
 - **MySQL** as the database
@@ -9,7 +9,7 @@ The application allows users to submit a form which is stored in a MySQL databas
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 ```bash
 .
 ├── 3arch
@@ -31,20 +31,19 @@ The application allows users to submit a form which is stored in a MySQL databas
 ```
 ---
 
-## ⚙️ How It Works
+## How It Works
 
-### 🗃️ Database (MySQL)
+### Database (MySQL)
 - Built using a custom `Dockerfile`.
 - Initializes a database called `info` and creates a table `users` using `init.sql`.
 - Exposes default MySQL port `3306`.
 
-### 💻 Application (PHP-FPM)
+### Application (PHP-FPM)
 - Uses the Bitnami `php-fpm` image.
 - Mounts the PHP source code from `/app/code/`.
 - Handles form submissions and inserts data into MySQL.
 
-### 🌐 Web Server (Nginx)
+### Web Server (Nginx)
 - Uses the official Nginx image.
 - Serves the HTML files and proxies `.php` requests to PHP-FPM.
 - Configured via `default.conf`.
-
