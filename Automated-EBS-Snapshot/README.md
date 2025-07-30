@@ -25,7 +25,7 @@ This project automates the backup of **all in-use EBS volumes across every AWS r
 3. Snapshots are tagged with metadata: `Region`, `VolumeId`, and a descriptive label.
 
 
-## 🔐 Security Learning: Principle of Least Privilege
+## Security Learning: Principle of Least Privilege
 
 Initially, the Lambda function was assigned the `AmazonEC2FullAccess` policy. However, this was revised to align with best practices.
 
