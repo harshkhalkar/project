@@ -1,0 +1,69 @@
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Sid": "VisualEditor0",
+			"Effect": "Allow",
+			"Action": [
+				"ec2:RunInstances",
+				"ec2:CreateVolume"
+			],
+			"Resource": [
+				"arn:aws:ec2:*:1359#993614:instance/*",
+				"arn:aws:ec2:*:1359#993614:volume/*",
+				"arn:aws:ec2:*:1359#993614:network-interface/*"
+			],
+			"Condition": {
+				"StringEquals": {
+					"aws:RequestTag/Team": [
+						"Backend",
+						"Frontend"
+					]
+				},
+				"ForAnyValue:StringEquals": {
+					"aws:TagKeys": "Team"
+				}
+			}
+		},
+		{
+			"Sid": "VisualEditor1",
+			"Effect": "Allow",
+			"Action": "ec2:CreateTags",
+			"Resource": [
+				"arn:aws:ec2:*:1359#993614:instance/*",
+				"arn:aws:ec2:*:1359#993614:volume/*",
+				"arn:aws:ec2:*:1359#993614:network-interface/*"
+			],
+			"Condition": {
+				"StringEquals": {
+					"ec2:CreateAction": [
+						"CreateVolume",
+						"RunInstances"
+					]
+				}
+			}
+		},
+		{
+			"Sid": "VisualEditor2",
+			"Effect": "Allow",
+			"Action": [
+				"ec2:Describe*",
+				"ec2:Get*"
+			],
+			"Resource": "*"
+		},
+		{
+			"Sid": "VisualEditor3",
+			"Effect": "Allow",
+			"Action": "ec2:RunInstances",
+			"Resource": [
+				"arn:aws:ec2:*:1359#993614:security-group/*",
+				"arn:aws:ec2:*:1359#993614:key-pair/*",
+				"arn:aws:ec2:*:1359#993614:volume/*",
+				"arn:aws:ec2:*:1359#993614:subnet/*",
+				"arn:aws:ec2:*:1359#993614:network-interface/*",
+				"arn:aws:ec2:*::image/*"
+			]
+		}
+	]
+}
