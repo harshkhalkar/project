@@ -15,8 +15,9 @@ This project automates the backup of **all in-use EBS volumes across every AWS r
 ---
 
 ## 🧱 Architecture Diagram
+![Architecture Diagram](screenshots/Architecture%20Diagram.png)
 
-
+---
 
 ### Workflow Summary:
 1. EventBridge triggers Lambda on a schedule (e.g., daily at midnight).
@@ -72,3 +73,9 @@ For production environments, data durability and disaster recovery are critical.
 ---
 
 📸 Screenshots
+
+![](screenshots/1751906785056.jpg)
+![](screenshots/1751906785037.jpg)
+![](screenshots/1751906785046.jpg)
+![](screenshots/1751906785043.jpg)
+![](screenshots/1751906785013.jpg)
